@@ -101,3 +101,5 @@ build/
 .env
 .env.test
 .env.production
+
+/data
