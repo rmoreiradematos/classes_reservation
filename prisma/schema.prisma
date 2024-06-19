@@ -23,6 +23,8 @@ model Class {
   floor          String
   description   String?
   reservations  Reservation[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Reservation {
@@ -36,7 +38,9 @@ model Reservation {
   isCompleted  Boolean    @default(false)
   previousId   Int?       @map("previous")
   nextId       Int?       @map("next")
-
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
   class        Class      @relation(fields: [classId], references: [id])
   previous     Reservation? @relation("ReservationPrevious", fields: [previousId], references: [id])
   next         Reservation? @relation("ReservationNext", fields: [nextId], references: [id])
