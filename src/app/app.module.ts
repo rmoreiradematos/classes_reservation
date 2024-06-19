@@ -4,6 +4,7 @@ import { PrismaModule } from "./prisma/prisma.module";
 import { UsersModule } from "./users/users.module";
 import { ReservationsModule } from "src/reservations/reservations.module";
 import { ClassesModule } from "src/classes/classes.module";
+import { NotificationsModule } from "src/notifications/notifications.module";
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { ClassesModule } from "src/classes/classes.module";
     UsersModule,
     ReservationsModule,
     ClassesModule,
+    NotificationsModule,
   ],
   controllers: [],
   providers: [],

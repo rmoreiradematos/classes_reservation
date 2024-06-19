@@ -47,3 +47,9 @@ model Reservation {
   previousReservations Reservation[] @relation("ReservationPrevious")
   nextReservations Reservation[] @relation("ReservationNext")
 }
+
+model Notification {
+  id          Int        @id @default(autoincrement())
+  unread      Boolean    @default(true)
+  action      Json      @default("{}")
+}
