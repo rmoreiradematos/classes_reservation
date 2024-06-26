@@ -1,15 +1,15 @@
 import {
-  Controller,
-  Get,
-  Post,
   Body,
-  Patch,
-  Param,
+  Controller,
   Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
 } from "@nestjs/common";
-import { ReservationsService } from "./reservations.service";
 import { CreateReservationDto } from "./dto/create-reservation.dto";
 import { UpdateReservationDto } from "./dto/update-reservation.dto";
+import { ReservationsService } from "./reservations.service";
 
 @Controller("reservations")
 export class ReservationsController {
@@ -21,16 +21,9 @@ export class ReservationsController {
   }
 
   filterDuplicateReservations(reservations) {
-    const seenDates = new Set<string>();
     const filteredReservations = [];
     reservations.forEach((reservation) => {
-      console.log(
-        reservation.dateStart,
-        seenDates.has(reservation.dateStart.toString()),
-        seenDates
-      );
-      if (!seenDates.has(reservation.dateStart.toString())) {
-        seenDates.add(reservation.dateStart.toString());
+      if (reservation.title !== 'Recurring reservation') {
         filteredReservations.push(reservation);
       }
     });
