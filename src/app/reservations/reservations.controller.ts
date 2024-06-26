@@ -20,9 +20,29 @@ export class ReservationsController {
     return this.reservationsService.create(createReservationDto);
   }
 
+  filterDuplicateReservations(reservations) {
+    const seenDates = new Set<string>();
+    const filteredReservations = [];
+    reservations.forEach((reservation) => {
+      console.log(
+        reservation.dateStart,
+        seenDates.has(reservation.dateStart.toString()),
+        seenDates
+      );
+      if (!seenDates.has(reservation.dateStart.toString())) {
+        seenDates.add(reservation.dateStart.toString());
+        filteredReservations.push(reservation);
+      }
+    });
+
+    return filteredReservations;
+  }
+
   @Get()
-  findAll() {
-    return this.reservationsService.findAll();
+  async findAll() {
+    const reservations = await this.reservationsService.findAll();
+    const filteredReservations = this.filterDuplicateReservations(reservations);
+    return filteredReservations;
   }
 
   @Get(":id")

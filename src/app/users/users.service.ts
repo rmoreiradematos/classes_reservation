@@ -9,6 +9,7 @@ export class UsersService {
   constructor(private prisma: PrismaService) {}
 
   async create(dto: CreateUserDto): Promise<User> {
+    console.log("tesch");
     return this.prisma.user.create({
       data: dto,
     });
